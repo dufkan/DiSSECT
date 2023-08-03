@@ -11,6 +11,7 @@ ENV HOME /home/sage
 ENV TARGET "${HOME}/dissect"
 
 USER root
+RUN echo -e '#!/bin/sh\nexec sage --python3 "$@"' > /usr/local/bin/python3 && chmod +x /usr/local/bin/python3
 RUN apt-get update && apt-get install ca-certificates
 RUN usermod -l ${NB_USER} sage
 COPY . ${TARGET}
